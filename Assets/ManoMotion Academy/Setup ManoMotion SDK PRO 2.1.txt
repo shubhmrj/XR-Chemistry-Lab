@@ -1,0 +1,38 @@
+Setup ManoMotion SDK PRO 2.1
+
+We recommend to try the scenes in ManoMotion > Scenes for examples first.
+These examples includes hand skeletons with visualizations when gestures are performed, interactions with objects and bounding box usage.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+There are several variations of prefabs and scenes set up and ready to use:
+
+Adjustable   - Works for Windows, Android and iOS.
+               Use this when you do not have any need for AR functionality.
+
+ARFoundation - To be used together with AR Foundation. 
+               Make sure to also add AR Core (Android) or AR Kit (iOS) from the Package Manager.
+
+Video        - Process videos, setup interaction scenarios or tests for debugging. 
+               Add any video clip to the video player on the ManoMotionManager.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Add ManoMotion to a scene:
+To add hand tracking to an existing scene simply drag ManoMotionManager Adjustable or ARFoundation depending on your use case.
+If you use AR Foundation make sure that the Main Camera has the components AR Camera Manager and AR Camera Background.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+FAQ:
+
+I am trying to run with AR Foundation but my screen is dark.
+	Make sure you have ARCore (Android) or ARKit (iOS) imported in the Package Manager.
+	You also need to enable the package in Project Settings > XR Plug-in Management or it won't run when starting the application.
+	If your project is using the Universal Render Pipeline you also need to add the AR Background Renderer Feature (see ManoMotion > Settings > Manomotion URP_Renderer).
+
+There is a delay in the skeleton tracking even though skeleton tracking is disabled and the smoothing controller value is set to 0
+	This is a bug in the Unity Editor.
+	If all smoothing is disabled and Processing Type is set to Sync there should be no smoothing/delay issues in builds.
+
+You can get more help, ideas and give feedback by joining our development Discord server at https://discord.gg/jK7e3mSfjt

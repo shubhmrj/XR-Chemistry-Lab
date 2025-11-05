@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ba04b8d03f30146f58b58231278be18f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 123782
+  packageName: Free Laboratory Pack
+  packageVersion: 1.2
+  assetPath: Assets/FreeLabAssets/Prefabs/Flask_06.prefab
+  uploadId: 316385

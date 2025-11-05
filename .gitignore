@@ -70,8 +70,8 @@ crashlytics-build.properties
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Unity
 
-Assets\ManoMotion
-Assets\ManoMotion Academy
+/Assets/ManoMotion/
+/Assets/ManoMotion Academy/
 
 Library
 library
