@@ -1,0 +1,5 @@
+"OpenCV" under Apache 2.0 License: https://github.com/opencv/opencv/blob/master/LICENSE
+"TensorFlow" under Apache 2.0 License: https://github.com/tensorflow/tensorflow/blob/master/LICENSE
+"OneEuroFilterUnity" under MIT License: https://github.com/DarioMazzanti/OneEuroFilterUnity/blob/main/LICENSE
+"Game Icons" from Kenney https://www.kenney.nl/assets/game-icons under CC0 License: https://creativecommons.org/publicdomain/zero/1.0/
+"Montserrat" under SIL OPEN FONT LICENSE Version 1.1: https://openfontlicense.org/open-font-license-official-text/

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 08521dc67da0f464d8e02468d5dfa443
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 123782
+  packageName: Free Laboratory Pack
+  packageVersion: 1.2
+  assetPath: Assets/FreeLabAssets/Prefabs/Pipette_Multy.prefab
+  uploadId: 316385

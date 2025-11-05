@@ -1,0 +1,252 @@
+═══════════════════════════════════════════════════════════════
+  BEAKER DISAPPEARING - COMPLETE FIX
+═══════════════════════════════════════════════════════════════
+
+PROBLEM: Beaker disappears when performing hand gestures
+
+ROOT CAUSE: Beaker is moving FAR outside camera view due to incorrect 
+position calculations, making it appear "disappeared" or "disabled"
+
+═══════════════════════════════════════════════════════════════
+✅ WHAT I FIXED
+═══════════════════════════════════════════════════════════════
+
+1. ✅ Added SAFETY BOUNDS to prevent beaker from going off-screen
+   - X: -5 to 5
+   - Y: -3 to 5
+   - Z: 5 to 15
+
+2. ✅ Reduced coordinateScale from 5 to 2
+   - Prevents extreme movements
+
+3. ✅ Added camera-relative positioning mode
+   - Uses viewport coordinates instead of raw hand position
+   - Keeps beaker visible at all times
+
+4. ✅ Added initial position storage and reset function
+   - Can reset beaker to starting position anytime
+
+5. ✅ Added position display in debug UI
+   - Shows exactly where beaker is located
+
+6. ✅ Added RESET BEAKER button in debug UI
+   - Click to instantly return beaker to start position
+
+═══════════════════════════════════════════════════════════════
+🎯 IMMEDIATE SOLUTION
+═══════════════════════════════════════════════════════════════
+
+STEP 1: Enable Debug Mode
+  - In Unity Inspector, select your beaker GameObject
+  - Find WaterAttachToBeaker component
+  - Set "Show Debug Visuals" = TRUE
+
+STEP 2: Run the game
+  - You'll see a debug panel in top-left corner
+  - It shows beaker position in real-time
+
+STEP 3: If beaker disappears
+  - Click the "RESET BEAKER" button in debug UI
+  - OR press the button in Inspector (ResetBeakerPosition)
+  - Beaker will return to initial position
+
+═══════════════════════════════════════════════════════════════
+⚙️ SETTINGS TO ADJUST (In Inspector)
+═══════════════════════════════════════════════════════════════
+
+WaterAttachToBeaker Component Settings:
+
+[Orientation Settings]
+  ✅ Coordinate Scale: 2 (REDUCED from 5)
+     - Lower = less sensitive, smaller movements
+     - If beaker still disappears, reduce to 1
+  
+  ✅ Hand Position Offset: (0, 0, 10)
+     - Z value = distance from camera
+     - Increase Z if beaker too close
+  
+  ✅ Use Direct Positioning: FALSE (RECOMMENDED)
+     - FALSE = Camera-relative (keeps beaker visible)
+     - TRUE = Direct hand mapping (can go off-screen)
+
+[Safety Settings] - NEW!
+  ✅ Enable Safety Bounds: TRUE
+     - Prevents beaker from leaving visible area
+  
+  ✅ Min Bounds: (-5, -3, 5)
+     - Minimum X, Y, Z coordinates
+  
+  ✅ Max Bounds: (5, 5, 15)
+     - Maximum X, Y, Z coordinates
+     - Adjust based on your camera setup
+
+[Pouring Settings]
+  ✅ Grab Smoothness: 0.3
+     - Lower = more responsive but jittery
+     - Higher = smoother but slower
+
+═══════════════════════════════════════════════════════════════
+🔍 DIAGNOSING THE ISSUE
+═══════════════════════════════════════════════════════════════
+
+When beaker "disappears", check debug UI position:
+
+NORMAL POSITION (Visible):
+  Position: (0-5, 0-5, 8-12)
+  ✅ Beaker is in camera view
+
+PROBLEM POSITIONS (Disappeared):
+  Position: (50, 30, 100) ❌ WAY TOO FAR
+  Position: (-100, -50, 200) ❌ OFF SCREEN
+  Position: (0, 0, 0) ❌ AT CAMERA (invisible)
+  Position: (0, 0, 500) ❌ TOO FAR AWAY
+
+If you see problem positions:
+  1. Click "RESET BEAKER" button
+  2. Reduce "Coordinate Scale" to 1
+  3. Enable "Safety Bounds"
+  4. Check "Use Direct Positioning" is FALSE
+
+═══════════════════════════════════════════════════════════════
+🎮 HOW TO USE GESTURES SAFELY
+═══════════════════════════════════════════════════════════════
+
+✊ CLOSED HAND (Grab & Move):
+  - Make a fist
+  - Move hand SLOWLY and SMOOTHLY
+  - Keep hand in CENTER of screen
+  - Don't move hand to extreme edges
+  - Beaker will follow within safe bounds
+
+✋ OPEN HAND (Tilt):
+  - Open hand flat
+  - Move left/right GRADUALLY
+  - Beaker tilts without moving position
+  - Safe - won't cause disappearing
+
+👌 PINCH (Refill):
+  - Pinch thumb + index
+  - Resets rotation and refills liquid
+  - Safe - won't cause disappearing
+
+═══════════════════════════════════════════════════════════════
+🚨 EMERGENCY FIXES
+═══════════════════════════════════════════════════════════════
+
+IF BEAKER DISAPPEARED:
+
+Option 1: Use Debug UI Button
+  - Enable "Show Debug Visuals" = TRUE
+  - Run game
+  - Click "RESET BEAKER" button
+
+Option 2: Use Inspector
+  - While game is running
+  - Select beaker GameObject
+  - Find WaterAttachToBeaker component
+  - Right-click component → "Reset Beaker Position"
+
+Option 3: Manual Reset
+  - Stop the game
+  - In Scene view, find beaker (might be far away)
+  - Move it back to camera view manually
+  - Note the good position
+  - Run game again
+
+Option 4: Adjust Safety Bounds
+  - Make bounds SMALLER to restrict movement:
+    Min Bounds: (-2, -1, 8)
+    Max Bounds: (2, 3, 12)
+
+═══════════════════════════════════════════════════════════════
+🔧 ADVANCED TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════
+
+ISSUE: Beaker still disappears even with safety bounds
+
+SOLUTION 1: Use Camera-Relative Mode
+  - Set "Use Direct Positioning" = FALSE
+  - This uses viewport coordinates
+  - Beaker stays in camera view automatically
+
+SOLUTION 2: Reduce Coordinate Scale
+  - Try: 1.0 (very small movements)
+  - Try: 0.5 (minimal movements)
+  - Find the sweet spot for your setup
+
+SOLUTION 3: Adjust Hand Position Offset
+  - Current: (0, 0, 10)
+  - Try: (0, 0, 8) - closer to camera
+  - Try: (0, -1, 10) - lower position
+  - Experiment to find best position
+
+SOLUTION 4: Check Camera Settings
+  - Make sure Main Camera is tagged "MainCamera"
+  - Check camera Far Clipping Plane (should be > 15)
+  - Check camera Near Clipping Plane (should be < 5)
+
+═══════════════════════════════════════════════════════════════
+📊 MONITORING BEAKER POSITION
+═══════════════════════════════════════════════════════════════
+
+With Debug UI enabled, watch these values:
+
+Position: (X, Y, Z)
+  - X: Left/Right (-5 to 5 is safe)
+  - Y: Up/Down (-3 to 5 is safe)
+  - Z: Distance from camera (5 to 15 is safe)
+
+If any value goes outside safe range:
+  → Safety bounds will clamp it
+  → If still disappears, bounds are too large
+
+Gesture Detection:
+  - Should show: "✊ CLOSED HAND - Move Beaker"
+  - Should show: "✋ OPEN HAND - Tilt Beaker"
+  - Should show: "👌 PINCH - Refill Beaker"
+
+═══════════════════════════════════════════════════════════════
+✅ FINAL CHECKLIST
+═══════════════════════════════════════════════════════════════
+
+Before testing:
+□ Show Debug Visuals = TRUE
+□ Enable Safety Bounds = TRUE
+□ Use Direct Positioning = FALSE
+□ Coordinate Scale = 2 (or lower)
+□ Min/Max Bounds are set correctly
+□ Main Camera is tagged properly
+□ Only WaterAttachToBeaker script is enabled
+□ Other beaker scripts are disabled/commented out
+
+During testing:
+□ Watch position values in debug UI
+□ Move hand slowly and smoothly
+□ Keep hand in center of screen
+□ Use RESET BEAKER button if needed
+
+If beaker disappears:
+□ Check position in debug UI
+□ Click RESET BEAKER button
+□ Reduce Coordinate Scale
+□ Tighten Safety Bounds
+□ Enable Camera-Relative mode
+
+═══════════════════════════════════════════════════════════════
+📝 SUMMARY
+═══════════════════════════════════════════════════════════════
+
+The beaker was NOT disabled - it was moving far outside the camera
+view due to incorrect position calculations.
+
+FIXES APPLIED:
+✅ Safety bounds to prevent off-screen movement
+✅ Reduced coordinate scale for smaller movements
+✅ Camera-relative positioning mode
+✅ Reset function to recover disappeared beaker
+✅ Real-time position monitoring
+✅ Emergency reset button in UI
+
+The beaker should now stay visible at all times!
+
+═══════════════════════════════════════════════════════════════
